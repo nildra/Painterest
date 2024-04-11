@@ -1,0 +1,24 @@
+.container_home {
+    margin-top: 20px;
+    column-count: 6;
+    column-gap: 15px;
+   }
+
+.item {
+    display: inline-block;
+    margin: 10px;
+    width: 100%;
+    border-radius: 5%;
+    -webkit-box-shadow: 1px 5px 15px -2px #000000; 
+    box-shadow: 1px 5px 10px -2px #8d8d8d;
+}
+
+.item:hover {
+    cursor: pointer;
+    filter: brightness(0.7);
+}
+
+.item img {
+    display:block;
+    width: 100%;
+}
