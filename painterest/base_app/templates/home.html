@@ -1,17 +1,21 @@
-{% extends "base.html" %} {% block title %} Home page {% endblock %}
+{% extends "base.html" %}
+{% block title %} Home page {% endblock %}
 {% load static %}
 {% block content %}
-<h1>Users list</h1>
 {% comment %} {% if items %}
 <h3>All my lists</h3>
 {% endif%} {% endcomment %}
-<ul>
-    {% for elem in elements %}
-    <li>
-        {{ elem.username }}: {% if elem.role %}Admin{% else %}Not admin{% endif %}
-    </li>
+
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+<div class="container_home"> 
+    {% for post in posts %}
+    {% comment %} {{ elem.username }}: {% if elem.role %}Admin{% else %}Not admin{% endif %} {% endcomment %}
+        <div class="item">
+            <img src="{% static post.pathImg %}">
+            <h1> {{ post.title }} </h1>
+            <p> {{ post.description }}</p>
+        </div>
     {% endfor %}
 
-    <img src="{% static 'chat.jpg' %}" alt="My image">
-</ul> 
+</div>
 {% endblock %}
