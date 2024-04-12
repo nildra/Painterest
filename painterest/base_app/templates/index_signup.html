@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign-up</title>
+  <link rel="stylesheet" href="style_signup.css" >
+  <link rel="stylesheet" href="style_login.css">
+
+</head>
+
+<body>
+  <div class="container"> <!-- Conteneur pour centrer le formulaire -->
+    <form>
+      <h1> Bienvenue sur Pinterest !</h1>
+     
+      <!-- placeholder = texte fictif  --> 
+      <div>
+          <!-- <div class="AdresseMail"> -->
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="Email" placeholder="E-mail" required/>
+            <span class="errorMessage" id="errorMail">Attention, n’oubliez pas d’ajouter votre adresse e-mail.</span>  <!--Lorsqu'on ne met rien et qu'on affiche directement se connecter-->
+          <!-- </div> -->
+        
+          <!-- <div class="MotdePasse">  -->
+            <label for="passeword">Mot de passe</label>
+            <input type="password" id="password" name="Password" placeholder= "Créer un mot de passe"required/>
+          <!-- </div> -->
+          
+          <!-- <div class="DateDeNaissance"> -->
+            <label for="datenaiss">Date de naissance</label>
+            <input type="date" id="datenaiss" name="DateDeNaissance" placeholder="jj/mm/aaaa" required/>
+          <!-- </div> -->
+
+            <button type="button">Continuer</button>
+            <p> OU </p>
+            <button type="buttonGoogle">Continuer avec Google</button>
+      </div>
+      <p>
+        En continuant, vous acceptez les Conditions d’utilisation de <br>Pinterest et reconnaissez avoir lu notre Politique de confidentialité.
+        <br>Informations concernant la collecte de données; 
+        <br>
+        <br>
+        Déjà membre ?<a href="index_login.html"> Se connecter </a>
+      </p>
+      <br>
+      <br>
+      <h2>Créer un compte professionnel gratuit</h2>
+  </form>
+</div>
+</body>
+</html>
