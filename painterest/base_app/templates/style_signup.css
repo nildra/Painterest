@@ -67,11 +67,11 @@ forme p{
     text-align: center; /* Centrer le texte horizontalement */
     align-items:center;
     margin-left: 50%;
+    text-decoration: none;
 }
 
 forme h2{
     display: flex;
-    background: grey;
     justify-content: center;
     text-align: center; /* Centrer le texte horizontalement */
     align-items:center;
@@ -80,6 +80,8 @@ forme h2{
 }
 .h2{
     display: flex;
+    background-color: grey;
+    text-decoration: none;
     justify-content: center;
     text-align: center; /* Centrer le texte horizontalement */
     align-items:center;

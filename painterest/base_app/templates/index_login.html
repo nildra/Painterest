@@ -11,8 +11,12 @@
 <body>
   <div class="container"> <!-- Conteneur pour centrer le formulaire -->
     <form>
+      <!-- Ou exemple de bouton de déconnexion -->
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit">Déconnexion</button>
+      </form>
       <h1> Bienvenue sur Pinterest !</h1>
-      <p> Trouvez de nouvelles idées à tester</p>
 
 
       <!-- placeholder = texte fictif  --> 
@@ -40,11 +44,9 @@
         <br>
         Informations concernant la collecte de données
         <br>Vous n’êtes pas encore sur Pinterest ? <a href="index_signup.html">Inscrivez-vous
-        <br>Vous êtes un professionnel ? Tout commence ici !
+        <br>Vous êtes un professionnel ? Tout commence ici !  /*je n'ai juste pas encore creer de page pour compte pro*/
       </p>
-      <br>
-      <br>
-      <h2>Créer un compte professionnel gratuit</h2>
+      
   </form>
 </div>
 </body>

@@ -12,8 +12,9 @@
 
 <body>
   <div class="container"> <!-- Conteneur pour centrer le formulaire -->
-    <form>
+    <form method="post" action="{% url 'inscription_reussie' %}">
       <h1> Bienvenue sur Pinterest !</h1>
+      <p> Trouvez de nouvelles idées à tester</p>
      
       <!-- placeholder = texte fictif  --> 
       <div>
@@ -39,14 +40,14 @@
       </div>
       <p>
         En continuant, vous acceptez les Conditions d’utilisation de <br>Pinterest et reconnaissez avoir lu notre Politique de confidentialité.
-        <br>Informations concernant la collecte de données; 
+        <br>Informations concernant la collecte de données
         <br>
         <br>
         Déjà membre ?<a href="index_login.html"> Se connecter </a>
       </p>
       <br>
       <br>
-      <h2>Créer un compte professionnel gratuit</h2>
+      <h2><a href="index_signup_pro.html">Créer un compte professionnel gratuit</a></h2>
   </form>
 </div>
 </body>
