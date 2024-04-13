@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %} Upload your photo {% endblock %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/upload.css' %}">
+<div class="container_upload">
+        <h2>Upload Image</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Upload</button>
+        </form>    
+</div>
+{% endblock %}

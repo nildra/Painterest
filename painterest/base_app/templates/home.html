@@ -11,9 +11,15 @@
     {% for post in posts %}
     {% comment %} {{ elem.username }}: {% if elem.role %}Admin{% else %}Not admin{% endif %} {% endcomment %}
         <div class="item">
-            <img src="{% static post.pathImg %}">
-            <h1> {{ post.title }} </h1>
-            <p> {{ post.description }}</p>
+            <form method="POST" action="/post/">
+                {% csrf_token %}
+                <input type="hidden" value="{{post.id_post}}" name="hidde_home_idpost">
+                <input type="submit" value="voir post">
+                    <img src="{% static 'img/'%}{{post.pathImg}} ">
+                        <h1> {{ post.title }} </h1>
+                    <p> {{ post.description }}</p>
+                </input>
+            </form>
         </div>
     {% endfor %}
 

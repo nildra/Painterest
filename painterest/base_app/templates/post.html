@@ -1,45 +1,50 @@
 {% extends "base.html" %}
-{% block title %} Post page {% endblock %}
+{% block title %} Post | Watch your post {% endblock %}
 {% load static %}
 {% block content %}
 
 <link rel="stylesheet" href="{% static 'css/post.css' %}">
-    <div class="container_post">
+<div class="container_post">
+    <div class="box">
 
-        <div> 
-            <img src="{% static 'img/chat.jpg' %}">
-        </div>
+        <img class="left_side" src="{% static 'img/'%}{{post_pathImg}} ">
 
-        <div class="right_post">
-            <div class="head_post"> <!-- Entete -->
-                <h3> Author user </h3>
-                <div class="head_post_inside">
-                    <h1>Voici mon chat </h1> 
-                    <p> Mon petit chat tigrou </p>
-                <div>
-            </div>
-            <strike> 
-            <div> <!-- Message post -->
-                <ul>
-                    <li>
-                        <h1> From Sandra </h1>
-                        <p> Aujoud'hui je vais me battre </p>
-                    </li>
-                    <li>
-                        <h1> From Sandra </h1>
-                        <p> Aujoud'hui je vais me battre </p>
-                    </li>
-                    <li>
-                        <h1> From Sandra </h1>
-                        <p> Aujoud'hui je vais me battre </p>
-                    </li>
-                    <li>
-                        <h1> From Moi </h1>
-                        <p> Cool </p>
-                    </li>
-                </ul>
+        <div class="right_side">
+            <div class="description"> <!-- User: Description and button like-->
+                <div> 
+                    <h4> Alice </h4>
+                </div>
+                <div> 
+                    <h4> {{post_title}} </h4>
+                    <p> Posté le : {{post_date}} | {{post_like}} likes</p>
+                    <p> {{post_description}}</p>
+                </div>
             </div>
 
+            <div> <!-- Commentaire and add commentaire-->
+
+                <div class="comment" ><!-- list commentaire-->
+                    <ul>
+                        {% for comment in comments %}
+                            <li>
+                                {{ comment.id_username }} : {{ comment.comment_description}} {{ comment.date}}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div> <!-- Add commentaire-->
+                    <form class="form_comment" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <p> Sandra </p> 
+                        <input type="hidden" name="idpost_post" value="{{idpost_post}}">
+                        <input type="text" name="comment">
+                        <input type="submit" value="Envoyer" />
+                    </form>
+                </div>
+            </div>
         </div>
+        
     </div>
+</div>
 {% endblock %}
