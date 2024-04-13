@@ -69,7 +69,7 @@ forme p{
     margin-left: 50%;
 }
 
-button{
+submit{
     border-radius: 50px;
     color: white;
     align-items: center; 
@@ -78,28 +78,6 @@ button{
     min-width : 370px;
     min-height: 48px;
     background: red;
-    margin-top: 24px;
-}
-buttonFaceBook{
-    border-radius: 50px;
-    color: white;
-    align-items: center; 
-    justify-content: center;
-    border: none;
-    min-width : 370px;
-    min-height: 48px;
-    background: blue;
-    margin-top: 24px;
-}
-buttonGoogle{
-    border-radius: 50px;
-    color: grey;
-    align-items: center; 
-    justify-content: center;
-    border: none;
-    min-width : 370px;
-    min-height: 48px;
-    background: white;
     margin-top: 24px;
 }
 

@@ -100,17 +100,6 @@ button{
     background: red;
     margin-top: 24px;
 }
-buttonGoogle{
-    border-radius: 50px;
-    color: grey;
-    align-items: center; 
-    justify-content: center;
-    border: none;
-    min-width : 370px;
-    min-height: 48px;
-    background: white;
-    margin-top: 24px;
-}
 
 label{
     margin-top: 24px;

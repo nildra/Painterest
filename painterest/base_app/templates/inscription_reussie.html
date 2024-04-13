@@ -1,0 +1,18 @@
+<!-- Dans inscription_reussie.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inscription réussie</title>
+</head>
+<body>
+    <h1>Inscription réussie</h1>
+    <p> Hey !
+    <br>Votre inscription s'est déroulée avec succès, {{ user.username }} !
+    <br>Bienvenue sur notre site Pinterest.</p>
+    <!-- Lien vers la page de connexion -->
+    <p>Déjà membre ? <a href="{% url 'login' %}">Connectez-vous ici</a></p>
+   
+</body>
+</html>

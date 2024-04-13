@@ -12,7 +12,7 @@
 
 <body>
   <div class="container"> <!-- Conteneur pour centrer le formulaire -->
-    <form method="post" action="{% url 'inscription_reussie' %}">
+    <form>
       <h1> Bienvenue sur Pinterest !</h1>
       <p> Trouvez de nouvelles idées à tester</p>
      
@@ -33,10 +33,11 @@
             <label for="datenaiss">Date de naissance</label>
             <input type="date" id="datenaiss" name="DateDeNaissance" placeholder="jj/mm/aaaa" required/>
           <!-- </div> -->
-
-            <button type="button">Continuer</button>
-            <p> OU </p>
-            <button type="buttonGoogle">Continuer avec Google</button>
+          <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Continuer</button>
+          </form>
       </div>
       <p>
         En continuant, vous acceptez les Conditions d’utilisation de <br>Pinterest et reconnaissez avoir lu notre Politique de confidentialité.

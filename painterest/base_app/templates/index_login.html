@@ -11,11 +11,6 @@
 <body>
   <div class="container"> <!-- Conteneur pour centrer le formulaire -->
     <form>
-      <!-- Ou exemple de bouton de déconnexion -->
-      <form method="post" action="{% url 'logout' %}">
-        {% csrf_token %}
-        <button type="submit">Déconnexion</button>
-      </form>
       <h1> Bienvenue sur Pinterest !</h1>
 
 
@@ -33,10 +28,12 @@
             <a href="index_forgot_password.html"> Mot de passe oublié ?</a>
           <!-- </div> -->
 
-            <button type="button">Se connecter</button>
-            <p> OU </p>
-            <button type="buttonFacebook">Continuer avec Facebook</button>
-            <button type="buttonGoogle">Continuer avec Google</button>
+          <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Se connecter</button>
+          </form>
+          
       </div>
 
       <p>

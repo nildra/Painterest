@@ -31,6 +31,16 @@
       </nav>
       
       <div class="container">{% block content %} {% endblock %}</div>
+      <!-- Section de déconnexion -->
+    <div class="deconnection">
+      <div class="box">
+          <!-- Lien de déconnexion -->
+          <form method="post" action="{% url 'logout' %}">
+              {% csrf_token %}
+              <button type="submit" class="padding">Déconnexion</button>
+          </form>
+      </div>
+    </div>
       <!-- jQuery and Bootstrap Bundle (includes Popper) -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
