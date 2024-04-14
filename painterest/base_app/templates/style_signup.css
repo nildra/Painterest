@@ -70,24 +70,6 @@ forme p{
     text-decoration: none;
 }
 
-forme h2{
-    display: flex;
-    justify-content: center;
-    text-align: center; /* Centrer le texte horizontalement */
-    align-items:center;
-    height: 120vh; /* Centrer verticalement sur la page */
-    border: 1 solid;
-}
-.h2{
-    display: flex;
-    background-color: grey;
-    text-decoration: none;
-    justify-content: center;
-    text-align: center; /* Centrer le texte horizontalement */
-    align-items:center;
-    margin-left: 50%;
-}
-
 
 button{
     border-radius: 50px;
@@ -109,19 +91,4 @@ label{
     text-decoration: none;
 }
 
-.errorMessage{
-    display: none;
-    color:hsla(360, 67%, 51%, 1);
-    font-family: 'Roboto', sans-serif;
-    font-weight: 400;
-    text-align: left;
-    margin-top: 8px;
-}
-
-#successAccount{
-    display: none;
-    text-align: center;
-    color:hsla(145, 63%, 42%, 1);
-    margin-top: 32px;
-}
 

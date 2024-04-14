@@ -5,46 +5,50 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sign-up</title>
-  <link rel="stylesheet" href="style_signup.css" >
+  <link rel="stylesheet" href="style_login.css" >
 </head>
 
 <body>
   <div class="container"> <!-- Conteneur pour centrer le formulaire -->
-    <form>
-      <h1> Bienvenue sur Pinterest !</h1>
 
 
       <!-- placeholder = texte fictif  --> 
-      <div>
+    <form method="post" action="{% url 'login' %}">
+      {% csrf_token %}
+
+
+
+      <h1> Bienvenue sur Pinterest !</h1>
+
+          <!-- <div class="Username">  -->
+            <label for="username">Nom d'utilisateur</label>
+            <input type="username" id="password" name="Username" placeholder="Nom d'utilisateur" required/>
+            <a href="forgot_password.html"> Mot de passe oublié ?</a>
+          <!-- </div> -->
+
           <!-- <div class="AdresseMail"> -->
             <label for="email">E-mail</label>
             <input type="email" id="email" name="Email" placeholder="E-mail" required/>
-            <span class="errorMessage" id="errorMail">Attention, n’oubliez pas d’ajouter votre adresse e-mail.</span>  <!--Lorsqu'on ne met rien et qu'on affiche directement se connecter-->
           <!-- </div> -->
-        
-          <!-- <div class="MotdePasse">  -->
-            <label for="passeword">Mot de passe</label>
-            <input type="password" id="password" name="Password" placeholder="Mot de passe" required/>
-            <a href="index_forgot_password.html"> Mot de passe oublié ?</a>
-          <!-- </div> -->
-
-          <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
+           
             <button type="submit">Se connecter</button>
-          </form>
-          
-      </div>
 
-      <p>
-        En continuant, vous acceptez les Conditions d’utilisation de <br>Pinterest et reconnaissez avoir lu notre Politique de confidentialité. 
-        <br>
-        Informations concernant la collecte de données
-        <br>Vous n’êtes pas encore sur Pinterest ? <a href="index_signup.html">Inscrivez-vous
-        <br>Vous êtes un professionnel ? Tout commence ici !  /*je n'ai juste pas encore creer de page pour compte pro*/
-      </p>
-      
-  </form>
+            <p>
+              En continuant, vous acceptez les Conditions d’utilisation de <br>Pinterest et reconnaissez avoir lu notre Politique de confidentialité. 
+              <br>
+              Informations concernant la collecte de données
+              <br>Vous n’êtes pas encore sur Pinterest ? <a href="index_signup.html">Inscrivez-vous
+            </p>
+
+    </form>
+          
+    {% if messages %}
+      <ul>
+          {% for message in messages %}
+              <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+          {% endfor %}
+      </ul>
+    {% endif %}
 </div>
 </body>
 </html>

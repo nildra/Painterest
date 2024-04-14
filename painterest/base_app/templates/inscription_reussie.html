@@ -7,12 +7,9 @@
     <title>Inscription réussie</title>
 </head>
 <body>
-    <h1>Inscription réussie</h1>
-    <p> Hey !
-    <br>Votre inscription s'est déroulée avec succès, {{ user.username }} !
-    <br>Bienvenue sur notre site Pinterest.</p>
-    <!-- Lien vers la page de connexion -->
-    <p>Déjà membre ? <a href="{% url 'login' %}">Connectez-vous ici</a></p>
-   
+    <h1>Inscription réussie !</h1>
+    <p>Votre compte a été créé avec succès.</p>
+    <p>Vous pouvez maintenant vous connecter à votre compte.</p>
+    <a href="{% url 'login' %}">Se connecter</a>
 </body>
 </html>
