@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block title %} My Profile{% endblock %}
+{% load static %}
+{% block content %}
+
+
+{% if islogged%}
+<link rel="stylesheet" href="{% static 'css/upload.css' %}">
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+<div class="container_upload" style="height: 800px;">
+        <h2>Upload Image</h2>
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Upload</button>
+        </form>
+</div>
+
+<hr/>
+
+<h3> Mes publications </h3>
+
+<div class="container_home"> 
+    {% for post in posts %}
+    {% comment %} {{ elem.username }}: {% if elem.role %}Admin{% else %}Not admin{% endif %} {% endcomment %}
+        <div class="item">
+            <form id="post_form_{{ post.id_post }}" method="POST" action="/post/" onclick="submitForm('post_form_{{ post.id_post }}')">
+                {% csrf_token %}
+                <input type="hidden" value="{{post.id_post}}" name="hidde_home_idpost">
+                    <img role="button" src="{% static 'media/'%}{{post.pathImg}}">
+                        <h1> {{ post.title }} </h1>
+                    <p> {{ post.description }}</p>
+                </input>
+            </form>
+        </div>
+    {% endfor %}
+</div>
+
+<script>
+    function submitForm(formId) {
+        document.getElementById(formId).submit();
+    }
+</script>
+
+{% else %}
+    <div style="display: flex; flex-direction: row; justify-content: center; height: 800px">
+
+        <div style="display: flex; flex-direction: column; align-items: center; margin-top: 150px;">
+            <h3> You don't have acces to this page, please login</h3>
+            <a href="/login" class="btn btn-dark"> Go to login </a>
+        </div>
+    
+        <img style="width: 400px; height: 400px;" src="{% static 'img/icon/404.png'%}">
+    </div>
+    
+{% endif %}
+
+{% endblock %}

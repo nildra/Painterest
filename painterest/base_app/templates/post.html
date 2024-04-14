@@ -4,7 +4,7 @@
 {% block content %}
 
 <link rel="stylesheet" href="{% static 'css/post.css' %}">
-<div class="container_post">
+<div class="container_post" style=" height: 800px">
     <div class="box">
 
         <img class="left_side" src="{% static 'media/'%}{{post_pathImg}} ">
@@ -12,7 +12,7 @@
         <div class="right_side">
             <div class="description"> <!-- User: Description and button like-->
                 <div class="user-post"> 
-                    <h4> Alice </h4>
+                    <h4> {{username}} </h4>
                 </div>
 
                 <div> 
@@ -48,15 +48,20 @@
                         </svg> 
                       </p>
 
+                      {% if islogged %}
                     <form class="form_comment" method="POST" enctype="multipart/form-data">
                         {% csrf_token %}
                         <div class="input-group">
-                            <span class="input-group-text" id="inputGroup-sizing-default">Sandra</span>
+                            <span class="input-group-text" id="inputGroup-sizing-default">{{username}}</span>
                             <input type="hidden" name="idpost_post" value="{{idpost_post}}">
                             <input type="text" name="comment" class="form-control" placeholder="Add a comment" aria-label="Comments section">
                             <button class="btn btn-outline-secondary" type="submit">Envoyer</button>
                         </div>
                     </form>
+                    {% else %}
+                        <h6> You are not connected, you can't comment </h6>
+                    {% endif %}
+                    
                 </div>
             </div>
         </div>

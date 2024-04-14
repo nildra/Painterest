@@ -49,9 +49,13 @@
         <div class="btn-group dropstart">
           <img class="profile nav-link -toggle dropstart" src="{% static 'img/profileBlanc64.png'%}" alt="profile blanc" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"/>   
           <ul class="dropdown-menu dropdown-menu-dark">
-              <li><a class="dropdown-item" href="#">Mon compte</a></li>
-              <li><a class="dropdown-item" href="#">Centre d'aide</a></li>
-              <li><a class="dropdown-item" href="#">Se deconnecter</a></li>
+             {% if islogged %}
+              <li><a class="dropdown-item" href="{% url 'profile' %}">My profil</a></li>
+              <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
+              {% else %}
+              <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>
+              <li><a class="dropdown-item" href="{% url 'login' %}">Register</a></li>
+              {% endif %}
           </ul>
         </div>
         </div>

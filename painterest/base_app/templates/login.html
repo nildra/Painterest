@@ -2,3 +2,92 @@
 {% block title %} Login to Painterest {% endblock %}
 {% load static %}
 {% block content %}
+
+<html> 
+<body> 
+
+<div>
+
+    {% if notValidUser %}
+    <div class="alert alert-danger" style="text-align: center;" role="alert">
+        <h4> {{ errorMessage }} </h4> 
+    </div>
+    {% endif %}
+
+
+    <div style="display: flex; flex-direction: row; justify-content: center; margin: auto;  height: 600px; margin-top:200px;"> 
+
+        <div style="margin: 30px; text-align: center;">
+            <h4> Login </h4>
+            <form name = "form" action = "/login/" method = "POST" >
+                <input type="hidden" name="hidden_field" value="login"/>
+            {% csrf_token %} 
+                <div style = "max-width:470px;"> 
+                    <center>
+                        <input type = "text" style = "margin-left:20%;" 
+                        placeholder = "Identifiant" name = "username" /> 
+                    </center> 
+                </div> 
+                <br>
+                <div style = "max-width:470px;"> 
+                    <center>
+                        <input type = "password" style = "margin-left:20%;" 
+                        placeholder = "password" name = "password" /> 
+                    </center> 
+                </div> 
+                <br> 
+                <div style = "max-width:470px;"> 
+                    <center>
+                    <button class="btn btn-dark" type = "submit" 
+                    value = "Login" > 
+                    <strong>Login</strong> 
+                    </button> 
+                    </center>
+                </div> 
+            </form> 
+        </div>
+
+        <div style="margin: 30px; text-align: center;">
+            <h4> Register </h4>
+
+            <form name = "form" action = "/login/" method = "POST" >
+                {% csrf_token %} 
+
+                <input type="hidden" name="hidden_field" value="register">
+
+                <div style = "max-width:470px;"> 
+                    <center>
+                        <input type = "text" style = "margin-left:20%;" placeholder = "Identifiant" name = "username_register" /> 
+                    </center> 
+                </div> 
+                <br>
+                <div style = "max-width:470px;"> 
+                    <center>
+                        <input type = "password" style = "margin-left:20%;" 
+                        placeholder = "password" name = "password" /> 
+                    </center> 
+                    <br>
+                    <center>
+                        <input type = "password" style = "margin-left:20%;" 
+                        placeholder = "password again" name = "password2" /> 
+                    </center> 
+                </div> 
+                <br> 
+                <div style = "max-width:470px;"> 
+                    <center>
+                    <button class="btn btn-dark"  type = "submit" 
+                    value = "Login" > 
+                    <strong>Register</strong> 
+                    </button> 
+                    </center>
+                </div> 
+            </form> 
+        </div>
+
+    </div>
+
+</div>
+</body> 
+</html>
+
+{% endblock%}

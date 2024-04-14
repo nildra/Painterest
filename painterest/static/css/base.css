@@ -237,6 +237,7 @@ input[type="checkbox"] {
 }
 
 footer{
+    position: relative;
     height: 125px;
     margin: 0%;
     padding: 0%;
