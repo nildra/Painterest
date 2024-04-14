@@ -1,0 +1,258 @@
+
+html{
+    scroll-behavior: smooth;
+}
+
+.icon{
+    width: 60px;
+    height: 60px;
+}
+
+.movie-box{
+   background-color: rgb(34, 34, 34);
+   height: 600px;
+   width: 300px;
+   margin: 5px;
+   margin-top: 100px;
+   border-radius: 7px;
+   cursor: pointer;
+   filter: drop-shadow(6px 6px 3px #3d38462e);
+   text-decoration: none;   
+}
+
+.movie-box img{
+    width: 300px;
+    height: 420px;
+    object-fit: cover;
+    object-position: 100% 60%;
+}
+
+.movie-box p, h2, a{
+    color: rgb(212, 207, 205);
+    font-family: "Outfit", sans-serif; 
+}
+
+.movie-box:hover{
+    transform : matrix(1.125, 0, 0, 1, 0, -55);
+    transition-duration: 1.5s, 1s;
+    z-index: 2;
+}
+
+.movie-box img:hover{
+    transform : matrix(1, 0, 0, 1, 0, -10s);
+    transition-duration: 1.7s, 1s;
+}
+
+.home{
+    display: flex;
+    flex-direction: row;
+    flex: 0 0 auto;
+    overflow: auto;
+    width: 95%;
+    overflow-y: hidden;
+}
+
+
+#main-container{
+    margin-top: 5%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.buttonSliderRight{
+    top: "30%";
+    right: "0%";
+    z-index: 3;
+    position: "absolute";
+    font-size: 56px;
+    border: none;
+    background-color: #00000000;
+    border-radius: 10%;
+    height: "200px";
+    color: white;
+}
+
+.buttonSliderRight:hover{
+    background-color: #2828286a;
+}
+
+.buttonSliderLeft:hover{
+    background-color: #2828286a;
+}
+
+.buttonSliderLeft{
+    top: "30%";
+    z-index: 3;
+    position: "absolute";
+    height: "200px";
+    font-size: 56px;
+    background-color: #00000000;
+    border-radius: 10%;
+    border: none;
+    color: white;
+}
+
+.slider-main{
+    display: flex;
+    flex-direction: row;
+}
+
+/* Dialog Ham */
+
+.ham-dialog{
+    z-index: 7;
+    position: fixed;
+    width: 300px;
+    height: 100%;
+    top: -2px;
+    border: none;
+    right: 100%;
+    background-color: rgb(18, 18, 18);
+    padding: auto;
+}
+
+.category{
+    display: flex;
+    flex-direction: column;
+    margin-top: 5px;
+}
+
+.category a{
+    font-size: 36px;
+    text-decoration: none;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+.category h2{
+    cursor: pointer;
+}
+
+.category a:hover{
+    background-color: #292929;
+}
+
+.ham-dialog-blur{
+    z-index: 7;
+    background-color: rgba(47, 47, 47, 0.46);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    border: none;
+    top: 0px;
+    cursor: pointer;
+}
+
+
+.ham-dialog-item{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+/* NAVBAR SECTION */
+.navbar {
+    background-color: rgb(36, 36, 36);
+    position: fixed; /* Fixe la navbar en haut de la page */
+    top: 0%;
+    width: 100%; /* La navbar occupe toute la largeur de la page */
+    left: 0%;
+}
+
+.navbar a {
+    float: left;
+    display: block;
+    text-align: center;
+    padding: 14px 16px; /* Espacement interne des liens */
+    font-family: "Outfit", sans-serif;
+    color: rgb(210, 202, 199);
+    text-decoration: none;
+    font-size: 30px;
+}
+
+.navbar a:hover {
+    background-color: rgba(26, 26, 26, 0.8); /* Couleur de fond au survol du lien */
+    color: #f2f2f2; /* Couleur du texte au survol du lien */
+}
+
+.profile{
+    position: absolute;
+    right: 2%;
+}
+
+/* SWITCH DARK MODE */
+
+
+input[type="checkbox"] {
+    display: none;
+  }
+  
+#switch {
+    display: block;
+    background: #000000;
+
+    border-radius: 20px;
+    cursor: pointer;
+}
+  
+  #circle {
+    width: 20px;
+    height: 20px;
+    background-size: 120px;
+    position: relative;
+    top: 0px;
+    left: 0px;
+    border: 10px solid white;
+    border-radius: 290px;
+    transition: 0.4s ease left, 0.4s ease background-position;
+    z-index: 2;
+  }
+  
+  #toggle:checked + #switch #circle {
+    left: 40px;
+  }
+
+  #toggle:checked + #switch {
+    background: #000000;
+  }
+
+ 
+.switchButton{
+    top: 8px;
+    width: 80px;
+    height: 20px;
+    position: absolute;
+    right: 12%;
+}
+  
+  /* END SWITCH DARK MODE */
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24
+}
+
+footer{
+    height: 125px;
+    margin: 0%;
+    padding: 0%;
+    color: white;
+    text-align: center;
+    font-size: 23px;
+    background: #212529;
+    bottom: 0px;
+}
+
+footer a{
+    text-decoration: none;
+}
+
+/* END footer */
+
+.footerIcons img{
+    margin: 20px;
+}

@@ -33,8 +33,7 @@ def generate_unique_filename(instance, filename):
     filename, extension = os.path.splitext(filename)
     id_random = random.randint(0, 99999)
     unique_filename = f"{filename}_{timestamp}_{id_random}{extension}"
-    print("#####", unique_filename)
-    return os.path.join('static/img/', unique_filename)
+    return os.path.join('static/media/', unique_filename)
 
 class Image(models.Model):
     title = models.CharField(max_length=100)

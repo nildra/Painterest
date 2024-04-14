@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %} 404 page {% endblock %}
+{% load static %}
+{% block content %}
+
+<div style="display: flex; flex-direction: row; justify-content: center;">
+
+    <div style="display: flex; flex-direction: column; align-items: center; margin-top: 150px;">
+        <h1> Your are lost, 404 page </h1>
+        <a href="/" class="btn btn-dark"> Go to home </a>
+    </div>
+
+    <img style="width: 400px; height: 400px;" src="{% static 'img/icon/404.png'%}">
+</div>
+
+{% endblock %}

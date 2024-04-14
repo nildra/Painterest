@@ -2,26 +2,60 @@
 {% block title %} Home page {% endblock %}
 {% load static %}
 {% block content %}
-{% comment %} {% if items %}
-<h3>All my lists</h3>
-{% endif%} {% endcomment %}
 
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+<h1 class="title"> Explore the best of Painterest </h1>
+
+<div class="containerHomeBox">
+
+    <div class="homeBox">
+        <img src="{% static 'img/box/chat.jpg'%}">
+        <div class="text-overlay">
+            <h2>Pet: cat, dog...</h2>
+            <p>Find your pet in our post</p>
+        </div>
+    </div>
+
+    <div class="homeBox">
+        <img src="{% static 'img/box/travel.jpg'%}">
+        <div class="text-overlay">
+            <h2>Travel</h2>
+            <p>Found the best place to travel with us.</p>
+        </div>
+    </div>
+
+    <div class="homeBox">
+        <img src="{% static 'img/box/food.jpg'%}">
+        <div class="text-overlay">
+            <h2>Best foot in europe</h2>
+            <p>Found the best food in Europe </p>
+        </div>
+    </div>
+
+</div>
+
+<h5 class="title"> Explore popular ideas </h5>
 <div class="container_home"> 
     {% for post in posts %}
     {% comment %} {{ elem.username }}: {% if elem.role %}Admin{% else %}Not admin{% endif %} {% endcomment %}
         <div class="item">
-            <form method="POST" action="/post/">
+            <form id="post_form_{{ post.id_post }}" method="POST" action="/post/" onclick="submitForm('post_form_{{ post.id_post }}')">
                 {% csrf_token %}
                 <input type="hidden" value="{{post.id_post}}" name="hidde_home_idpost">
-                <input type="submit" value="voir post">
-                    <img src="{% static 'img/'%}{{post.pathImg}} ">
+                    <img role="button" src="{% static 'media/'%}{{post.pathImg}}">
                         <h1> {{ post.title }} </h1>
                     <p> {{ post.description }}</p>
                 </input>
             </form>
         </div>
     {% endfor %}
-
 </div>
+
+<script>
+    function submitForm(formId) {
+        document.getElementById(formId).submit();
+    }
+</script>
+
 {% endblock %}

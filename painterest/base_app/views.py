@@ -5,9 +5,12 @@ from .forms import ImageForm
 import os
 from django.conf import settings
 
-# Create your views here.
 def test(request):
-    return render(request, "main.html")
+    return render(request, "test.html")
+
+def error_404_view(request, exception):
+    return render(request, "404.html", status=404)
+
 
 def home(request):
     items = PostsDB.objects.all()
@@ -29,7 +32,7 @@ def post(request):
         reponse= render(request, "post.html", {"comments": comment, "idpost_post": id_post_var, "post_pathImg": post.pathImg, "post_title": post.title, "post_description": post.description, "post_date": post.date, "post_like": post.like})
         return reponse
     else:
-        return redirect(to="/home")
+        return redirect(to="/")
     
 def upload_image(request):
     if request.method == 'POST':
@@ -41,10 +44,9 @@ def upload_image(request):
             user = UsersDB.objects.get(username='Alice')
             title = form.cleaned_data['title']
            # description = form.cleaned_data['description']  # Récupère l'objet de l'image
-            image = image_name.replace("static/img/", "")
-            print("))))))))", image)
+            image = image_name.replace("static/media/", "")
             PostsDB(id_username=user, title=title, description="description", pathImg=image).save()
-            return redirect('/home')  # Redirigez vers la page d'accueil après le téléchargement
+            return redirect('/')  # Redirigez vers la page d'accueil après le téléchargement
     else:
         form = ImageForm()
     return render(request, 'upload.html', {'form': form})
