@@ -1,14 +1,18 @@
 from django import forms
-from .models import Image
+#from .models import Image
 from base_app.models import UsersDB
 from django.contrib.auth.hashers import make_password, check_password
 
-class ImageForm(forms.ModelForm):
-    class Meta:
-        model = Image
-        fields = ['title', 'image']
+class ImageForm(forms.Form):
+    title = forms.CharField(max_length = 100,  widget=forms.TextInput(attrs={'class': 'form-control'}))  
+    description = forms.CharField(max_length = 255,  widget=forms.TextInput(attrs={'class': 'form-control'})) 
+    upload_image = forms.ImageField()
 
-class LoginForm(forms.Form): 
+ #   class Meta:
+ #       model = Image
+ #       fields = ['title','image']
+
+class LoginForm(forms.Form):
     username = forms.CharField(max_length = 100) 
     password = forms.CharField(widget = forms.PasswordInput()) 
 

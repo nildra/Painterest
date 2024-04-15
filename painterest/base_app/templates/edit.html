@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %} Edit | Watch your post {% endblock %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/post.css' %}">
+<div class="container_post" style=" height: 800px">
+    <div class="box">
+
+        <img class="left_side" src="{% static 'media/'%}{{post_pathImg}} ">
+
+        <div class="right_side">
+            <div class="description">
+                <div class="user-post"> 
+                    <h4> {{post_user}} </h4>
+                </div>
+
+                <div> 
+                    <form>
+                        <input type = "text" name = "title" value="{{post_title}}"/> 
+                        <input type = "text" name = "description" value="{{post_description}}"/> 
+                    </form>
+                </div>
+            </div>
+                <p class="small-text"> Posté le : {{post_date}}</p>
+            </div>
+            <hr/>
+        </div>
+        
+    </div>
+</div>
+{% endblock %}

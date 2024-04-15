@@ -12,7 +12,7 @@
         <div class="right_side">
             <div class="description"> <!-- User: Description and button like-->
                 <div class="user-post"> 
-                    <h4> {{username}} </h4>
+                    <h4> {{post_user}} </h4>
                 </div>
 
                 <div> 
@@ -55,7 +55,7 @@
                             <span class="input-group-text" id="inputGroup-sizing-default">{{username}}</span>
                             <input type="hidden" name="idpost_post" value="{{idpost_post}}">
                             <input type="text" name="comment" class="form-control" placeholder="Add a comment" aria-label="Comments section">
-                            <button class="btn btn-outline-secondary" type="submit">Envoyer</button>
+                            <button class="btn btn-outline-secondary" type="submit">Send</button>
                         </div>
                     </form>
                     {% else %}
