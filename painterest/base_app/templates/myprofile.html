@@ -8,8 +8,6 @@
 <link rel="stylesheet" href="{% static 'css/upload.css' %}">
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 
-
-  
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -19,7 +17,7 @@
         </div>
         <div class="modal-body">
             <div class="modal-body">
-                    <form method="post" enctype="multipart/form-data">
+                    <form method="post" enctype="multipart/form-data"> {% comment %}enctype ad on a des images {% endcomment %}
                         {% csrf_token %}
                         {{ form.as_p }}
                         <button type="submit" class="btn btn-dark">Upload</button>
@@ -33,7 +31,7 @@
 <div style="display:flex; flex-direction: column; justify-content: center;">
     <hr/>
     
-    <h3> My posts </h3>
+    <h1 class="title">  My posts </h1>
     
     <div class="container_home"> 
         <div class="item">

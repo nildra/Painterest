@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <title>{% block title %} - {% endblock %}</title>
     {% bootstrap_css %}
@@ -52,7 +53,7 @@
           <img class="profile nav-link -toggle dropstart" src="{% static 'img/profileBlanc64.png'%}" alt="profile blanc" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"/>   
           <ul class="dropdown-menu dropdown-menu-dark">
              {% if islogged %}
-              <li><a class="dropdown-item" href="{% url 'profile' %}">My profil</a></li>
+              <li><a class="dropdown-item" href="{% url 'profile' %}">My profile</a></li>
               <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
               {% else %}
               <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>

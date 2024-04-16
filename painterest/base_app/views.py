@@ -6,7 +6,8 @@ from django.conf import settings
 from base_app.forms import LoginForm, RegisterForm
 import time
 import random
-
+from django.http import JsonResponse
+import json
 
 def test(request):
     return render(request, "test.html")
@@ -126,7 +127,10 @@ def edit(request):
     if islogged:
         username_logged = request.session['username']
     else:
+        print("####################### not connected")
         return redirect("/")
+
+    print("#######################  OK", request.method)
 
     if request.method == 'POST':
         id_post_var = request.POST.get('hidde_home_idpost', None)
@@ -134,8 +138,26 @@ def edit(request):
 
         if username_logged == post.id_username.username:
             return render(request, "edit.html", {"idpost_post": id_post_var, "post_pathImg": post.pathImg, "post_title": post.title, "post_description": post.description, "post_date": post.date, "post_like": post.like, "post_user": post.id_username.username,"islogged": islogged, "username": username_logged })
-        else:
-            return redirect("/")
+    elif request.method == 'DELETE':
+            try:
+                data = json.loads(request.body)
+                id_post_var = data.get('hidden_home_idpost')
+
+                print(id_post_var)
+                post = PostsDB.objects.get(id_post=id_post_var)
+                post.delete()
+                return JsonResponse("Post deleted successfully.")
+            except PostsDB.DoesNotExist:
+                return JsonResponse("Post does not exist.")
+    elif request.method == 'PUT':
+            id_post_var = request.POST.get('hidde_home_idpost', None)
+            title = request.POST.get('title', None)
+            description = request.POST.get('description', None)
+
+            PostsDB.objects.filter(pk=id_post_var).update(description=description)
+            PostsDB.objects.filter(pk=id_post_var).update(title=title)
+            PostsDB.save()
+            return render(request, "edit.html", {"idpost_post": id_post_var, "post_pathImg": post.pathImg, "post_title": post.title, "post_description": post.description, "post_date": post.date, "post_like": post.like, "post_user": post.id_username.username,"islogged": islogged, "username": username_logged, "edit": "Success update" })
     else:
         return redirect("/")
 
