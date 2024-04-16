@@ -1,0 +1,21 @@
+
+.container_post{
+    margin:auto;
+    display: flex;
+    flex-direction: row;
+}
+
+.head_post{
+    display: flex;
+    flex-direction: row; 
+}
+
+.head_post_inside{
+    display: flex;
+    flex-direction: column;
+}
+
+.right_post{
+    display: flex;
+    flex-direction: column;
+}

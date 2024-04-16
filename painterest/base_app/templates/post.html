@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block title %} Post page {% endblock %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/post.css' %}">
+    <div class="container_post">
+
+        <div> 
+            <img src="{% static 'img/chat.jpg' %}">
+        </div>
+
+        <div class="right_post">
+            <div class="head_post"> <!-- Entete -->
+                <h3> Author user </h3>
+                <div class="head_post_inside">
+                    <h1>Voici mon chat </h1> 
+                    <p> Mon petit chat tigrou </p>
+                <div>
+            </div>
+            <strike> 
+            <div> <!-- Message post -->
+                <ul>
+                    <li>
+                        <h1> From Sandra </h1>
+                        <p> Aujoud'hui je vais me battre </p>
+                    </li>
+                    <li>
+                        <h1> From Sandra </h1>
+                        <p> Aujoud'hui je vais me battre </p>
+                    </li>
+                    <li>
+                        <h1> From Sandra </h1>
+                        <p> Aujoud'hui je vais me battre </p>
+                    </li>
+                    <li>
+                        <h1> From Moi </h1>
+                        <p> Cool </p>
+                    </li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+{% endblock %}
