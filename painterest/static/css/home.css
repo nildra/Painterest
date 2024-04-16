@@ -1,24 +1,89 @@
 .container_home {
     margin-top: 20px;
-    column-count: 6;
+    column-count: 7;
     column-gap: 15px;
-   }
+    margin: 50px;
+}
 
 .item {
     display: inline-block;
     margin: 10px;
     width: 100%;
     border-radius: 5%;
-    -webkit-box-shadow: 1px 5px 15px -2px #000000; 
+   /* -webkit-box-shadow: 1px 5px 15px -2px #000000; 
     box-shadow: 1px 5px 10px -2px #8d8d8d;
+    */
 }
 
 .item:hover {
     cursor: pointer;
     filter: brightness(0.7);
+    transform : matrix(1, 0, 0, 1, 0, -20);
+    transition-duration: 0.4s, 0.4s;
 }
 
 .item img {
     display:block;
     width: 100%;
+    border-radius: 3%;
 }
+
+.containerHomeBox{
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.homeBox{
+    margin: 20px;  position: relative;
+    position: relative;
+}
+
+.homeBox img{
+    height: 250px;
+    width: 350px;
+    border-radius: 5%;
+    filter: brightness(0.7);
+    object-fit: cover;
+}
+
+.homeBox:hover{
+    cursor: pointer;
+    filter: brightness(1.6);
+    transition-duration: 0.4s, 0.4s;
+}
+
+.title{
+    margin: 2%;
+    text-align: center;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white; /* Couleur du texte */
+    background-color: rgba(0, 0, 0, 0.5); /* Fond semi-transparent */
+    border-radius: 5%;
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  .text-overlay h2 {
+    font-weight: bold;
+    margin: 0;
+    font-size: 24px;
+  }
+  
+  .text-overlay p {
+    margin: 10px 0 0;
+  }

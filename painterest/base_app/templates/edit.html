@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %} Edit | Watch your post {% endblock %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/post.css' %}">
+
+{% if edit %}
+<div class="alert alert-success" style="text-align: center;" role="alert">
+    <h4> {{ edit }} </h4> 
+</div>
+{% endif %}
+{% csrf_token %}
+
+<div class="container_post" style=" height: 800px">
+    <div class="box">
+
+        <img class="left_side" src="{% static 'media/'%}{{post_pathImg}} ">
+
+        <div class="right_side">
+            <div class="description">
+                <div class="user-post"> 
+                    <h4> {{post_user}} </h4>
+                </div>
+                <div> 
+                    <form name = "form" action = "/edit/" method = "PUT" >
+                        {% csrf_token %}
+                        <input type="hidden" value="{{post.idpost_post}}" name="hidde_edit_idpost">
+                        <p class="small-text"> Posté le : {{post_date}}</p>
+                        <p>Title : <input type = "text" name = "title" value="{{post_title}}" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/> </p>
+                        <p>Description : <input type = "text" name = "description" value="{{post_description}}"class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default"/> </p>
+                        {% comment %} <button type="submit" class="btn btn-danger">Delete</button> {% endcomment %}
+                        <button type="submit" class="btn btn-dark">Save</button>
+                    </form>
+
+                    <button type="button" id="deleteBtn"  class="btn btn-danger">Delete</button>
+
+                </div>
+            <hr/>
+        </div>
+        
+    </div>
+</div>
+
+<script>
+    const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    $(document).ready(function() {
+        $('#deleteBtn').click(function() {
+            var postData = {
+                'csrfmiddlewaretoken': '{{ csrf_token }}',
+                'hidden_home_idpost': '{{ post.id_post }}',
+                'alors': 'prout'
+
+            };
+            
+            $.ajax({
+                type: 'DELETE',
+                url: '/edit/',
+                headers: {'X-CSRFToken': csrftoken},
+                data: JSON.stringify(postData),
+                contentType: 'application/json',
+                success: function(response) {
+                    alert(response.message);
+                },
+                error: function(xhr, errmsg, err) {
+                    console.error(xhr.status + ": " + xhr.responseText);
+                    // Gérer les erreurs
+                }
+            });
+        });
+    });
+
+</script>
+
+{% endblock %}

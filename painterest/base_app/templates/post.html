@@ -1,45 +1,71 @@
 {% extends "base.html" %}
-{% block title %} Post page {% endblock %}
+{% block title %} Post | Watch your post {% endblock %}
 {% load static %}
 {% block content %}
 
 <link rel="stylesheet" href="{% static 'css/post.css' %}">
-    <div class="container_post">
+<div class="container_post" style=" height: 800px">
+    <div class="box">
 
-        <div> 
-            <img src="{% static 'img/chat.jpg' %}">
-        </div>
+        <img class="left_side" src="{% static 'media/'%}{{post_pathImg}} ">
 
-        <div class="right_post">
-            <div class="head_post"> <!-- Entete -->
-                <h3> Author user </h3>
-                <div class="head_post_inside">
-                    <h1>Voici mon chat </h1> 
-                    <p> Mon petit chat tigrou </p>
-                <div>
+        <div class="right_side">
+            <div class="description"> <!-- User: Description and button like-->
+                <div class="user-post"> 
+                    <h4> {{post_user}} </h4>
+                </div>
+
+                <div> 
+                    <h5> {{post_title}} </h5>
+                    <p> {{post_description}}</p>
+                </div>
             </div>
-            <strike> 
-            <div> <!-- Message post -->
-                <ul>
-                    <li>
-                        <h1> From Sandra </h1>
-                        <p> Aujoud'hui je vais me battre </p>
-                    </li>
-                    <li>
-                        <h1> From Sandra </h1>
-                        <p> Aujoud'hui je vais me battre </p>
-                    </li>
-                    <li>
-                        <h1> From Sandra </h1>
-                        <p> Aujoud'hui je vais me battre </p>
-                    </li>
-                    <li>
-                        <h1> From Moi </h1>
-                        <p> Cool </p>
-                    </li>
-                </ul>
-            </div>
+            <p class="small-text"> Posté le : {{post_date}}</p>
 
+            <hr/>
+            <div> <!-- Commentaire and add commentaire-->
+
+                <div class="comment" ><!-- list commentaire-->
+                    {% if comments %}
+                        <ul>
+                            {% for comment in comments %}
+                                <li>
+                                    {{ comment.id_username.username }} : {{ comment.comment_description}} {{ comment.date}}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    {%else %}
+                        <h6>No comments yet. </h6>
+                    {%endif%}
+                </div>
+
+                <div> <!-- Add commentaire-->
+                    <hr/>
+                    <p>
+                        {{post_like}} 
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart" viewBox="0 0 16 16">
+                          <path d="m8 2.748-.717-.737C5.6.281 2.514.878 1.4 3.053c-.523 1.023-.641 2.5.314 4.385.92 1.815 2.834 3.989 6.286 6.357 3.452-2.368 5.365-4.542 6.286-6.357.955-1.886.838-3.362.314-4.385C13.486.878 10.4.28 8.717 2.01zM8 15C-7.333 4.868 3.279-3.04 7.824 1.143q.09.083.176.171a3 3 0 0 1 .176-.17C12.72-3.042 23.333 4.867 8 15"/>
+                        </svg> 
+                      </p>
+
+                      {% if islogged %}
+                    <form class="form_comment" method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <span class="input-group-text" id="inputGroup-sizing-default">{{username}}</span>
+                            <input type="hidden" name="idpost_post" value="{{idpost_post}}">
+                            <input type="text" name="comment" class="form-control" placeholder="Add a comment" aria-label="Comments section">
+                            <button class="btn btn-outline-secondary" type="submit">Send</button>
+                        </div>
+                    </form>
+                    {% else %}
+                        <h6> You are not connected, you can't comment </h6>
+                    {% endif %}
+                    
+                </div>
+            </div>
         </div>
+        
     </div>
+</div>
 {% endblock %}
