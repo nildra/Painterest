@@ -155,7 +155,7 @@ def login(request):
                     request.session['islogged'] = True
                     path = "/profile?profile=" + str(username)
                     return redirect(path)  
-            except NameError:
+            except Exception as e:
                 return render(request, 'login.html', {"notValidUser": True, "errorMessage": str(e).replace('[', ' ').replace(']', ' ')})
                   
     return render(request, 'login.html')
