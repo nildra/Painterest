@@ -28,32 +28,17 @@
                   {% block btnnavbar %} Explore {% endblock %}
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
-                  <li><a class="dropdown-item" href="#">Explore</a></li>
-                  <li><a class="dropdown-item" href="#">Following</a></li>
+                  <li><a class="dropdown-item" href="/">Explore</a></li>
+                  <li><a class="dropdown-item" href="/following">Following</a></li>
                 </ul>
               </li>
             </ul>
           </div>
-
-           <!-- 
-          <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-          </form>
-
-
-         <div class="switchButton">
-            <input onclick="whiteMode()" type="checkbox" id="toggle">
-            <label id="switch" for="toggle">
-                <div id="circle"></div>
-            </label>
-          </div>
-        -->
         <div class="btn-group dropstart">
           <img class="profile nav-link -toggle dropstart" src="{% static 'img/profileBlanc64.png'%}" alt="profile blanc" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"/>   
           <ul class="dropdown-menu dropdown-menu-dark">
              {% if islogged %}
-              <li><a class="dropdown-item" href="{% url 'profile' %}">My profile</a></li>
+              <li><a class="dropdown-item" href="{% url 'profile' %}?profile={{ username_navbar }}">My profile</a></li>
               <li><a class="dropdown-item" href="{% url 'logout' %}">Logout</a></li>
               {% else %}
               <li><a class="dropdown-item" href="{% url 'login' %}">Login</a></li>

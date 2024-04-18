@@ -35,7 +35,6 @@ def generate_unique_filename(filename):
     unique_filename = f"{filename}_{timestamp}_{id_random}{extension}"
     return os.path.join('static/media/', unique_filename)
 
-# class Image(models.Model):
-#     title = models.CharField(max_length=100)
-#     #description = models.CharField(max_length=255)
-#     image = models.ImageField(upload_to=generate_unique_filename)
+class FollowsDB(models.Model):
+    id_follower = models.ForeignKey(UsersDB, on_delete=models.CASCADE, related_name='follower')
+    id_following = models.ForeignKey(UsersDB, on_delete=models.CASCADE, related_name='follower_set')

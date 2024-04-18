@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+{% block title %} Following {% endblock %}
+{% block btnnavbar %} Following {% endblock %}
+{% load static %}
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
+
+<h1 class="title"> Following </h1>
+
+    {% if islogged %}
+
+    {% if posts_following %}
+
+        <div class="container_home"> 
+            {% for post in posts_following %}
+            {% comment %} {{ elem.username }}: {% if elem.role %}Admin{% else %}Not admin{% endif %} {% endcomment %}
+                <div class="item">
+                    <form id="post_form_{{ post.id_post }}" method="POST" action="/post/" onclick="submitForm('post_form_{{ post.id_post }}')">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{post.id_post}}" name="hidde_home_idpost">
+                            <img role="button" src="{% static 'media/'%}{{post.pathImg}}">
+                                <h1> {{ post.title }} </h1>
+                            <p> {{ post.description }}</p>
+                        </input>
+                    </form>
+                </div>
+                
+            {% endfor %}
+            {% else %}
+            <div class="alert alert-dark" style="text-align: center;" role="alert">
+                <h4 style="margin: 300px;"> You don't have any following </h4> 
+            </div>
+        {% endif %} 
+    </div>
+
+    {% else %}
+        <div class="alert alert-dark" style="text-align: center;" role="alert">
+            <h4 style="margin: 300px;"> You are not connected</h4> 
+        </div>
+    {% endif %}
+
+
+
+<script>
+    function submitForm(formId) {
+        document.getElementById(formId).submit();
+    }
+</script>
+
+{% endblock %}
