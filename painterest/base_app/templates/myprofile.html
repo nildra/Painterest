@@ -8,6 +8,7 @@
 <link rel="stylesheet" href="{% static 'css/upload.css' %}">
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 
+
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -20,6 +21,7 @@
                     <form method="post" enctype="multipart/form-data"> {% comment %}enctype ad on a des images {% endcomment %}
                         {% csrf_token %}
                         {{ form.as_p }}
+                        <input type="hidden" name="type_form" value="upload">
                         <button type="submit" class="btn btn-dark">Upload</button>
                     </form>
             </div>
@@ -29,31 +31,73 @@
   </div>
   
 <div style="display:flex; flex-direction: column; justify-content: center;">
-    <hr/>
-    
-    <h1 class="title">  My posts </h1>
+
+    <div style="display:flex; flex-direction: row; justify-content: center; margin: 10px;margin-top: 30px; ">
+        <img class="profile nav-link -toggle dropstart" src="{% static 'img/profileNoir64.png'%}" alt="profile blanc" id="navbarDarkDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false"/>   
+        <div style="display:flex; flex-direction: column; justify-content: center;">
+
+            <h3> {{ userpage }}</h3>
+            <div style="display:flex; flex-direction: column; justify-content: center;">
+                <h5>Followers : {% if followers %} {% for follower in followers %} <a style="text-decoration: None; font-size: 22px; color: orange;" href="/profile?profile={{follower.username}}"> {{follower.username}}, </a> {% endfor%} {% else %} No followers {% endif %}</h5>
+                <h5>Following : {% if following %} {% for follow in following %} <a style="text-decoration: None; font-size: 22px;color: orange;" href="/profile?profile={{follow.username}}"> {{follow.username}}, </a> {% endfor%} {% else %} No following {% endif %}</h5>
+            </div>
+            {% if not mypage %}    
+                <form action="/profile/?profile={{userpage}}" method="POST">
+                    {% csrf_token %}
+                    <input type="hidden" name="type_form" value="follow">
+                    <input type="hidden" name="user_to_follow" value="{{ userpage }}">
+                    <button type="submit" class="btn btn-dark">Follow</button>
+                </form>
+            {%endif%}
+          
+        </div>
+    </div>
+    <hr/>   
+    <h1 class="title"> 
+        {% if mypage %}    
+            My posts
+        {% else %}    
+            {{ userpage }}'s publications
+        {%endif%}
+    </h1>
     
     <div class="container_home"> 
-        <div class="item">
-            <button type="button" class="btn btn-dark" style="width: 250px; height: 350px;" data-bs-toggle="modal" data-bs-target="#exampleModal"> <span class="material-icons" style="font-size: 56px;">file_upload</span> <br>
-                Upload a new image</button>
-        </div>
-        {% for post in posts %}
-        {% comment %} {{ elem.username }}: {% if elem.role %}Admin{% else %}Not admin{% endif %} {% endcomment %}
+        {% if mypage %}    
             <div class="item">
-                <form id="post_form_{{ post.id_post }}" method="POST" action="/edit/" onclick="submitForm('post_form_{{ post.id_post }}')">
-                    {% csrf_token %}
-                    <input type="hidden" value="{{post.id_post}}" name="hidde_home_idpost">
-                        <img role="button" src="{% static 'media/'%}{{post.pathImg}}">
-                            <h1> {{ post.title }} </h1>
-                        <p> {{ post.description }}</p>
-                    </input>
-                </form>
-                <div style="text-align: right; color: black;">
-                    <span class="material-icons" >edit</span>
-                </div>
+                <button type="button" class="btn btn-dark" style="width: 250px; height: 350px;" data-bs-toggle="modal" data-bs-target="#exampleModal"> <span class="material-icons" style="font-size: 56px;">file_upload</span> <br>
+                    Upload a new image</button>
             </div>
-        {% endfor %}
+            {% for post in posts %}
+            {% comment %} {{ elem.username }}: {% if elem.role %}Admin{% else %}Not admin{% endif %} {% endcomment %}
+                <div class="item">
+                    <form id="post_form_{{ post.id_post }}" method="POST" action="/edit/" onclick="submitForm('post_form_{{ post.id_post }}')">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{post.id_post}}" name="hidde_home_idpost">
+                            <img role="button" src="{% static 'media/'%}{{post.pathImg}}">
+                                <h1> {{ post.title }} </h1>
+                            <p> {{ post.description }}</p>
+                        </input>
+                    </form>
+                    <div style="text-align: right; color: black;">
+                        <span class="material-icons" >edit</span>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            {% for post in posts %}
+            {% comment %} {{ elem.username }}: {% if elem.role %}Admin{% else %}Not admin{% endif %} {% endcomment %}
+                <div class="item">
+                    <form id="post_form_{{ post.id_post }}" method="POST" action="/post/" onclick="submitForm('post_form_{{ post.id_post }}')">
+                        {% csrf_token %}
+                        <input type="hidden" value="{{post.id_post}}" name="hidde_home_idpost">
+                            <img role="button" src="{% static 'media/'%}{{post.pathImg}}">
+                                <h1> {{ post.title }} </h1>
+                            <p> {{ post.description }}</p>
+                        </input>
+                    </form>
+                </div>
+            {% endfor %}
+        {%endif%}
     </div>  
 </div>
 
