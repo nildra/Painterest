@@ -1,5 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
-from .models import UsersDB, PostsDB, CommentsDB
+from .models import UsersDB, PostsDB, CommentsDB, LikesDB
 from .forms import ImageForm
 import os
 from django.conf import settings
@@ -8,6 +8,8 @@ import time
 import random
 from django.http import JsonResponse
 import json
+from django.contrib.sessions.models import Session
+
 
 def test(request):
     return render(request, "test.html")
@@ -27,13 +29,16 @@ def post(request):
         username_logged = request.session['username']
 
     if request.method == 'POST':
-
         if request.POST.get('hidde_home_idpost', None):
             id_post_var = request.POST.get('hidde_home_idpost', None)
             post = PostsDB.objects.get(id_post=id_post_var)
-        elif request.POST.get('idpost_post', None):
+        elif request.POST.get('idpost_post', None) and request.POST.get('like', None):  # Ajout de la vérification du bouton like:
             id_post_var = request.POST.get('idpost_post', None)
             user = UsersDB.objects.get(username=username_logged)
+            #### user= request.user
+            #check and update like
+            like_updated=like(user,post)
+            
             post = PostsDB.objects.get(id_post=id_post_var)
             comment_description = request.POST.get('comment', None)
             comment = CommentsDB(id_username= user, id_post=post, comment_description=comment_description)#, date=timezone.now())
@@ -43,6 +48,33 @@ def post(request):
         return reponse
     else:
         return redirect(to="/")
+    
+    
+# Check if a user has already liked a post and update it if not
+def like(user, post):
+    already_liked = LikesDB.objects.filter(id_username=user, id_post=post).exists()
+
+    if not already_liked:
+        try:
+            last_like_id=LikesDB.objects.order_by('id_like').last().id_like
+        except LikesDB.DoesNotExist:
+            #default to 1 if no likes exist
+            last_like_id=0
+            
+        #generate the next id_like
+        new_id_like = last_like_id+1
+        
+        # Add a new like record
+        new_like = LikesDB.objects.create(id_like=new_id_like, id_username=user, id_post=post)
+
+        # Update post likes count 
+        post.like += 1
+        post.save()
+
+        return True
+    else:
+        return False
+    
     
 def profile(request):
     username_logged = None
@@ -162,10 +194,11 @@ def edit(request):
         return redirect("/")
 
 
-
 def generate_unique_filename(filename):
     timestamp = str(int(time.time()))
     filename, extension = os.path.splitext(filename)
     id_random = random.randint(0, 99999)
     unique_filename = f"{filename}_{timestamp}_{id_random}{extension}"
     return os.path.join('static/media/', unique_filename), unique_filename
+
+

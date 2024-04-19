@@ -9,6 +9,7 @@ from django.contrib import admin
 urlpatterns = [
     path("", views.home, name="home"),
     path("post/", views.post, name="post"),
+    path("like/", views.like, name="like"),
     path("test/", views.test, name="test"),
     path("profile/", views.profile, name="profile"),
     path("search/", views.test, name="test"),

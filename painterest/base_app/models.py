@@ -4,6 +4,8 @@ import time
 import os
 import random
 from django.utils import timezone
+
+
 # Create your models here.
 class UsersDB(models.Model):
     id_user = models.AutoField(primary_key=True)
@@ -39,3 +41,8 @@ def generate_unique_filename(filename):
 #     title = models.CharField(max_length=100)
 #     #description = models.CharField(max_length=255)
 #     image = models.ImageField(upload_to=generate_unique_filename)
+
+class LikesDB(models.Model):
+    id_like = models.AutoField(primary_key=True)
+    id_username = models.ForeignKey(UsersDB, on_delete=models.CASCADE)
+    id_post = models.ForeignKey(PostsDB, on_delete=models.CASCADE)
