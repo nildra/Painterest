@@ -9,6 +9,7 @@ import random
 from django.http import JsonResponse
 import json
 from django.contrib.sessions.models import Session
+from django.db.models import get_or_create
 
 
 def test(request):
@@ -55,21 +56,13 @@ def like(user, post):
     already_liked = LikesDB.objects.filter(id_username=user, id_post=post).exists()
 
     if not already_liked:
-        try:
-            last_like_id=LikesDB.objects.order_by('id_like').last().id_like
-        except LikesDB.DoesNotExist:
-            #default to 1 if no likes exist
-            last_like_id=0
-            
-        #generate the next id_like
-        new_id_like = last_like_id+1
-        
-        # Add a new like record
-        new_like = LikesDB.objects.create(id_like=new_id_like, id_username=user, id_post=post)
+        # Use get_or_create to ensure unique id_like 
+        new_like, created = LikesDB.objects.get_or_create(id_username=user, id_post=post)
 
         # Update post likes count 
-        post.like += 1
-        post.save()
+        if created:  # Only update if a new like was created
+            post.like += 1
+            post.save()
 
         return True
     else:
