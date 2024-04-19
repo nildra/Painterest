@@ -45,4 +45,4 @@ def generate_unique_filename(filename):
 class LikesDB(models.Model):
     id_like = models.AutoField(primary_key=True)
     id_username = models.ForeignKey(UsersDB, on_delete=models.CASCADE)
-    id_post = models.ForeignKey(PostsDB, on_delete=models.CASCADE)
+    id_post = models.ForeignKey(PostsDB, on_delete=models.CASCADE)  
